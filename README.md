@@ -15,3 +15,5 @@ Uses [PGoApi](https://github.com/tejado/pgoapi/) by [tejado](https://github.com/
 ```
 (venv) ~/pidgey$ ./pidgey.py
 ```
+
+![screenshot](http://i.imgur.com/K4ZC5H7.png)

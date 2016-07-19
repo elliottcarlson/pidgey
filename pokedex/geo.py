@@ -26,6 +26,9 @@ class Geo(object):
 
     def set_location(self):
         location = prompt('Enter an address or location (ex. Washington, DC): ')
+        if not location:
+            raise Exception('No address entered, leaving current position.')
+
         position = self.get_pos_by_name(location)
 
         with open('config/location.yaml', 'w') as yaml_file:
