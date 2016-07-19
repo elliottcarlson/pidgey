@@ -3,7 +3,7 @@ Uses [PGoApi](https://github.com/tejado/pgoapi/) by [tejado](https://github.com/
 # Setup
 
 ```
-~$ git clone https://github.com/elliottcarlson/pidgey
+~$ git clone --recursive https://github.com/elliottcarlson/pidgey
 ~$ cd pidgey/
 ~/pidgey$ virtualenv venv
 ~/pidgey$ source venv/bin/activate
