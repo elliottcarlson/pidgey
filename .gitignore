@@ -1,4 +1,4 @@
-credentials.yaml
-.pyc
+*.yaml
+*.pyc
 venv
 token

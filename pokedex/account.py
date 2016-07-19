@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from prompt_toolkit import prompt
-from prompt_toolkit.shortcuts import confirm
 from utils import *
 import json
 
@@ -16,7 +15,7 @@ class Account(object):
     def do_login(self, line):
         "Login to Pokemon Go"
         try:
-            credentials = load_config('credentials.yaml')
+            credentials = load_config('config/credentials.yaml')
         except IOError:
             print('No accounts configured; please create one now.')
             credentials = self.__accounts()
@@ -42,7 +41,7 @@ class Account(object):
 
     def __accounts(self):
         try:
-            credentials = load_config('credentials.yaml')
+            credentials = load_config('config/credentials.yaml')
         except IOError:
             credentials = {}
 
@@ -81,7 +80,7 @@ class Account(object):
             }
         })
 
-        with open('credentials.yaml', 'w') as yaml_file:
+        with open('config/credentials.yaml', 'w') as yaml_file:
             yaml_file.write(yaml.safe_dump(credentials, default_flow_style=False))
 
         return credentials

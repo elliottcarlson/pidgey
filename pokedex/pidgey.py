@@ -3,15 +3,16 @@ from prompt_toolkit import prompt
 from prompt_toolkit.shortcuts import confirm
 from termcolor import colored
 from cmd2 import Cmd
-import sys, time, threading, yaml
+import sys, time, threading, yaml, json
 
 
 from .cmd import Cmd
 from .account import Account
+from .geo import Geo
 from .utils import *
 
 
-class Pidgey(Account, Cmd):
+class Pidgey(Account, Geo, Cmd):
 
     username = None
     currency = dict()
@@ -25,9 +26,12 @@ class Pidgey(Account, Cmd):
 
         intro()
 
-    def do_inventory(self, line):
-        inventory = self.api.getInventory()
+        self.get_location()
 
+
+    def do_inventory(self, line):
+        response_dict = self.api.get_inventory().call()
+        print('Response dictionary: \n\r{}'.format(json.dumps(response_dict, indent=2)))
 
     def do_run(self, line):
         def func_not_found():
@@ -79,6 +83,15 @@ class Pidgey(Account, Cmd):
         "Configure Pidgey"
 
         credentials = self._config()
+
+
+    def precmd(self, line):
+        self.api.set_position(
+            self.location['latitude'],
+            self.location['longitude'],
+            self.location['altitude']
+        )
+        return Cmd.precmd(self, line)
 
 
     def postcmd(self, stop, line):
