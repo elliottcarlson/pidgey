@@ -3,6 +3,7 @@ from prompt_toolkit import prompt
 from geopy.geocoders import GoogleV3
 from s2sphere import CellId, LatLng
 from .utils import *
+import os
 
 class Geo(object):
     def __init__(self):
@@ -31,7 +32,7 @@ class Geo(object):
 
         position = self.get_pos_by_name(location)
 
-        with open('config/location.yaml', 'w') as yaml_file:
+        with open(os.path.realpath('config/location.yaml'), 'w') as yaml_file:
             yaml_file.write(yaml.safe_dump(position, default_flow_style=False))
 
         return position

@@ -8,14 +8,14 @@ import binascii, os, yaml
 from pprint import pprint
 
 def load_config(config_file):
-    if os.path.isfile(config_file):
-        with open(config_file, 'r') as stream:
+    if os.path.isfile(os.path.realpath(config_file)):
+        with open(os.path.realpath(config_file), 'r') as stream:
             try:
                 return yaml.load(stream)
             except yaml.YAMLError as exc:
                 pass
 
-    raise IOError('Could not read %s.' % config_file)
+    raise IOError('Could not read %s.' % os.path.realpath(config_file))
 
 
 def intro():

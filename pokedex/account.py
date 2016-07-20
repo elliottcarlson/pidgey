@@ -80,7 +80,7 @@ class Account(object):
             }
         })
 
-        with open('config/credentials.yaml', 'w') as yaml_file:
+        with open(os.path.realpath('config/credentials.yaml'), 'w') as yaml_file:
             yaml_file.write(yaml.safe_dump(credentials, default_flow_style=False))
 
         return credentials
